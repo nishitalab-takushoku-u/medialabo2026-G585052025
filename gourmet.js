@@ -14,12 +14,61 @@ function print(data) {
     console.log("最寄駅: " + n.station_name);
     console.log("サブジャンル: " + n.sub_genre.name);
     i = i+1;
-} 
+  }
 }
 
 // 課題5-1 の関数 printDom() はここに記述すること
 function printDom(data) {
+  let div = document.createElement('div');
+  div.setAttribute('id' , 'result');
+  let body = document.querySelector('body');
+  body.insertAdjacentElement('beforeend' , div);
+  let p = document.createElement('p');
+  p.setAttribute('class' , 'kekkakazu');
+  p.textContent = ('検索結果' + i + '件');
+  div.insertAdjacentElement('beforeend' , p);
 
+  let i = 0;
+  for (let n of data.results.shop){
+    p = document.createElement('p');
+    p.setAttribute('class' , 'kekka');
+    p.textContent = ((i+1) + "件目の検索結果");
+    div.insertAdjacentElement('beforeend' , p);
+    let h2 = document.createElement('h2');
+    h2.textContent = ("店名: " + n.name);
+    div.insertAdjacentElement('beforeend' , h2);
+
+    p = document.createElement('p');
+    p.textContent = ("アクセス: " + n.access);
+    div.insertAdjacentElement('beforeend' , p);
+    p = document.createElement('p');
+    p.textContent = ("住所: " + n.address);
+    div.insertAdjacentElement('beforeend' , p);
+    p = document.createElement('p');
+    p.textContent = ("予算: " + n.budget.name);
+    div.insertAdjacentElement('beforeend' , p);
+    p = document.createElement('p');
+    p.textContent = ("キャッチコピー: " + n.catch);
+    div.insertAdjacentElement('beforeend' , p);
+    p = document.createElement('p');
+    p.textContent = ("ジャンル: " + n.genre.name);
+    div.insertAdjacentElement('beforeend' , p);
+    p = document.createElement('p');
+    p.textContent = ("営業時間: " + n.open);
+    div.insertAdjacentElement('beforeend' , p);
+    p = document.createElement('p');
+    p.textContent = ("最寄駅: " + n.station_name);
+    div.insertAdjacentElement('beforeend' , p);
+    p = document.createElement('p');
+    p.textContent = ("サブジャンル: " + n.sub_genre.name);
+    div.insertAdjacentElement('beforeend' , p);
+    i = i+1;
+  }
+  
+  p = document.createElement('p');
+  p.textContent = '検索結果は以上です。';
+  p.setAttribute('class' , 'kekka');
+  div.insertAdjacentElement('beforeend' , p);
 }
 
 // 課題6-1 のイベントハンドラ登録処理は以下に記述
@@ -252,3 +301,6 @@ let data = {
   }
 };
 
+
+//let b = document.querySelector('button#kensaku');
+//b.addEventListener('click' , );

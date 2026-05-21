@@ -1,5 +1,9 @@
-div {
+p.kekka {
     border-top: 1px solid gray;
+}
+
+p.kekkakazu {
+    font-size : 120% ;
 }
 
 img {
