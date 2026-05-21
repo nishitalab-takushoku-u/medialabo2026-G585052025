@@ -25,7 +25,7 @@ function printDom(data) {
   body.insertAdjacentElement('beforeend' , div);
   let p = document.createElement('p');
   p.setAttribute('class' , 'kekkakazu');
-  p.textContent = ('検索結果' + i + '件');
+  p.textContent = ('検索結果0件');
   div.insertAdjacentElement('beforeend' , p);
 
   let i = 0;
@@ -65,6 +65,8 @@ function printDom(data) {
     i = i+1;
   }
   
+  p = document.querySelector('p.kekkakazu');
+  p.textContent = '検索結果' + i + '件';
   p = document.createElement('p');
   p.textContent = '検索結果は以上です。';
   p.setAttribute('class' , 'kekka');
