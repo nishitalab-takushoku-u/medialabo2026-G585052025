@@ -12,13 +12,17 @@ function print(data) {
     console.log("ジャンル: " + n.genre.name);
     console.log("営業時間: " + n.open);
     console.log("最寄駅: " + n.station_name);
-    console.log("サブジャンル: " + n.sub_genre.name);
+    //console.log("サブジャンル: " + n.sub_genre.name);
     i = i+1;
   }
 }
 
 // 課題5-1 の関数 printDom() はここに記述すること
 function printDom(data) {
+  let remove = document.querySelector('div#result');
+  if(remove != null){
+    remove.remove();
+  }
   let div = document.createElement('div');
   div.setAttribute('id' , 'result');
   let body = document.querySelector('body');
@@ -27,6 +31,7 @@ function printDom(data) {
   p.setAttribute('class' , 'kekkakazu');
   p.textContent = ('検索結果0件');
   div.insertAdjacentElement('beforeend' , p);
+
 
   let i = 0;
   for (let n of data.results.shop){
@@ -37,6 +42,11 @@ function printDom(data) {
     let h2 = document.createElement('h2');
     h2.textContent = ("店名: " + n.name);
     div.insertAdjacentElement('beforeend' , h2);
+    let img = document.createElement('img');
+    img.setAttribute('src' , n.logo_image);
+    //img.setAttribute('width' , '150px');
+    img.setAttribute('height' , '150px');
+    div.insertAdjacentElement('beforeend' , img);
 
     p = document.createElement('p');
     p.textContent = ("アクセス: " + n.access);
@@ -60,13 +70,19 @@ function printDom(data) {
     p.textContent = ("最寄駅: " + n.station_name);
     div.insertAdjacentElement('beforeend' , p);
     p = document.createElement('p');
-    p.textContent = ("サブジャンル: " + n.sub_genre.name);
+    if(n.sub_genre === undefined){
+      p.textContent = ("サブジャンル: なし");
+    }
+    else{
+      p.textContent = ("サブジャンル: " + n.sub_genre.name);
+      
+    }
     div.insertAdjacentElement('beforeend' , p);
     i = i+1;
   }
   
   p = document.querySelector('p.kekkakazu');
-  p.textContent = '検索結果' + i + '件';
+  p.textContent = genretext + 'の検索結果' + i + '件';
   p = document.createElement('p');
   p.textContent = '検索結果は以上です。';
   p.setAttribute('class' , 'kekka');
@@ -74,18 +90,35 @@ function printDom(data) {
 }
 
 // 課題6-1 のイベントハンドラ登録処理は以下に記述
-
-
-
+let button = document.querySelector('button#kensaku');
+let genretext;
+button.addEventListener('click' , sendRequest);
 
 // 課題6-1 のイベントハンドラ sendRequest() の定義
 function sendRequest() {
+  let s = document.querySelector('select#genre');
+  let idx = s.selectedIndex;
+  let os = s.querySelectorAll('option');
+  let o = os.item(idx);
+  
+  let genre = (o.getAttribute('value'));
+  genretext = o.textContent;
 
+  if(genre != 'G000'){
+    let url = 'https://www.nishita-lab.org/web-contents/jsons/hotpepper/' + genre + '.json';
+    axios.get(url).then(showResult).catch(showError).then(finish);
+  }
+  
+
+  
 }
 
 // 課題6-1: 通信が成功した時の処理は以下に記述
 function showResult(resp) {
-
+  let data = resp.data;
+  console.log(data);
+  
+  printDom(data);
 }
 
 // 課題6-1: 通信エラーが発生した時の処理
@@ -102,7 +135,7 @@ function finish() {
 // 以下はグルメのデータサンプル
 // 注意: 第5回までは以下を変更しないこと！
 // 注意2: 課題6-1 で以下をすべて削除すること
-let data = {
+/**let data = {
   "results": {
     "api_version": "1.26",
     "results_available": 52,
@@ -301,8 +334,4 @@ let data = {
       }
     ]
   }
-};
-
-
-//let b = document.querySelector('button#kensaku');
-//b.addEventListener('click' , );
+}; */
