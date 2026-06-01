@@ -39,45 +39,59 @@ function printDom(data) {
     p.setAttribute('class' , 'kekka');
     p.textContent = ((i+1) + "件目の検索結果");
     div.insertAdjacentElement('beforeend' , p);
-    let h2 = document.createElement('h2');
-    h2.textContent = ("店名: " + n.name);
-    div.insertAdjacentElement('beforeend' , h2);
+    
     let img = document.createElement('img');
     img.setAttribute('src' , n.logo_image);
-    //img.setAttribute('width' , '150px');
-    img.setAttribute('height' , '150px');
+    img.setAttribute('width' , '200px');
+    img.setAttribute('height' , '200px');
     div.insertAdjacentElement('beforeend' , img);
+    
+    let h2 = document.createElement('h2');
+    h2.textContent = (n.name);
+    h2.setAttribute('class' , 'tenmei');
+    div.insertAdjacentElement('beforeend' , h2);
+
+    p = document.createElement('p');
+    
+    //div.insertAdjacentElement('beforeend' , p);
+    //p = document.createElement('p');
+    //p.textContent = ("ジャンル: " + n.genre.name);
+    //div.insertAdjacentElement('beforeend' , p);
+    //p = document.createElement('p');
+    if(n.sub_genre === undefined){
+      p.textContent = (n.genre.name + " / " + "最寄駅 : " + n.station_name);
+    }
+    else{
+      //p.textContent = ("サブジャンル: " + n.sub_genre.name);
+      p.textContent = (n.genre.name + " " + n.sub_genre.name + " / " + "最寄駅 : " + n.station_name);
+    }
+    div.insertAdjacentElement('beforeend' , p);
+
+    p = document.createElement('p');
+    p.textContent = ("キャッチコピー: " + n.catch);
+    p.setAttribute('class' , 'catch');
+    div.insertAdjacentElement('beforeend' , p);
+
+    p = document.createElement('p');
+    p.textContent = ("営業時間: " + n.open);
+    div.insertAdjacentElement('beforeend' , p);
 
     p = document.createElement('p');
     p.textContent = ("アクセス: " + n.access);
     div.insertAdjacentElement('beforeend' , p);
+
     p = document.createElement('p');
     p.textContent = ("住所: " + n.address);
     div.insertAdjacentElement('beforeend' , p);
+
     p = document.createElement('p');
     p.textContent = ("予算: " + n.budget.name);
     div.insertAdjacentElement('beforeend' , p);
-    p = document.createElement('p');
-    p.textContent = ("キャッチコピー: " + n.catch);
-    div.insertAdjacentElement('beforeend' , p);
-    p = document.createElement('p');
-    p.textContent = ("ジャンル: " + n.genre.name);
-    div.insertAdjacentElement('beforeend' , p);
-    p = document.createElement('p');
-    p.textContent = ("営業時間: " + n.open);
-    div.insertAdjacentElement('beforeend' , p);
-    p = document.createElement('p');
-    p.textContent = ("最寄駅: " + n.station_name);
-    div.insertAdjacentElement('beforeend' , p);
-    p = document.createElement('p');
-    if(n.sub_genre === undefined){
-      p.textContent = ("サブジャンル: なし");
-    }
-    else{
-      p.textContent = ("サブジャンル: " + n.sub_genre.name);
-      
-    }
-    div.insertAdjacentElement('beforeend' , p);
+
+
+    
+
+    
     i = i+1;
   }
   

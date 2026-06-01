@@ -6,11 +6,17 @@ p.kekkakazu {
     font-size : 120% ;
 }
 
+
 img {
-    float: right;
+    float :left;
+    margin-right :20px;
 }
 
-div#result{
-    display: grid;
+h2.tenmei {
+    font-size : 160%;
+}
+
+p.catch {
+    //太字にする
     
 }
