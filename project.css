@@ -17,6 +17,6 @@ h2.tenmei {
 }
 
 p.catch {
-    //太字にする
-    
+    font-weight: bold;
+
 }
