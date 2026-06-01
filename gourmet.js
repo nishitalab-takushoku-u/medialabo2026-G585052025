@@ -50,42 +50,43 @@ function printDom(data) {
     h2.textContent = (n.name);
     h2.setAttribute('class' , 'tenmei');
     div.insertAdjacentElement('beforeend' , h2);
-
-    p = document.createElement('p');
     
+    p = document.createElement('p');
+    p.textContent = (n.catch);
+    p.setAttribute('class' , 'catch');
+    div.insertAdjacentElement('beforeend' , p);
+    
+    p = document.createElement('p');
     //div.insertAdjacentElement('beforeend' , p);
     //p = document.createElement('p');
     //p.textContent = ("ジャンル: " + n.genre.name);
     //div.insertAdjacentElement('beforeend' , p);
     //p = document.createElement('p');
     if(n.sub_genre === undefined){
-      p.textContent = (n.genre.name + " / " + "最寄駅 : " + n.station_name);
+      p.textContent = (n.genre.name + " / " + "アクセス: " + n.access);
     }
     else{
       //p.textContent = ("サブジャンル: " + n.sub_genre.name);
-      p.textContent = (n.genre.name + " " + n.sub_genre.name + " / " + "最寄駅 : " + n.station_name);
+      p.textContent = (n.genre.name + " " + n.sub_genre.name + " / " + "アクセス: " + n.access);
     }
     div.insertAdjacentElement('beforeend' , p);
 
-    p = document.createElement('p');
-    p.textContent = ("キャッチコピー: " + n.catch);
-    p.setAttribute('class' , 'catch');
-    div.insertAdjacentElement('beforeend' , p);
+    
 
     p = document.createElement('p');
     p.textContent = ("営業時間: " + n.open);
     div.insertAdjacentElement('beforeend' , p);
-
     p = document.createElement('p');
-    p.textContent = ("アクセス: " + n.access);
+    p.textContent = ("予算: " + n.budget.name);
     div.insertAdjacentElement('beforeend' , p);
+
 
     p = document.createElement('p');
     p.textContent = ("住所: " + n.address);
     div.insertAdjacentElement('beforeend' , p);
 
     p = document.createElement('p');
-    p.textContent = ("予算: " + n.budget.name);
+    p.textContent = ("最寄駅 : " + n.station_name);
     div.insertAdjacentElement('beforeend' , p);
 
 
